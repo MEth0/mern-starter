@@ -3,6 +3,8 @@ Basic MERN Stack with authentication
 
 ## Run
 
+You need MongoDB running
+
 ### API
 ```
 cd api
