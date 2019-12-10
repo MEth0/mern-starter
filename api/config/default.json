@@ -1,0 +1,5 @@
+{
+  "expressPort": 8080,
+  "mongoURI": "mongodb://localhost/mern-pool",
+  "jwtSecret": "sl_myJwtSecret"
+}
