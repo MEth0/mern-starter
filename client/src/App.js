@@ -27,7 +27,9 @@ class App extends Component {
       if (res.data.connected) {
         this.setState({ connectedUser: res.data.user });
       }
-    });
+    }).catch(err => {
+      console.log('Seesion expired', err.response.data);
+    })
   }
 
   login(connectedUser) {

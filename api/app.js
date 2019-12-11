@@ -1,12 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const config = require('config');
+const cookies = require('cookies');
 
 const app = express();
 const router = express.Router();
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+app.use(cookies.express([config.get('jwtSecret')]))
 
 const port = config.get('expressPort');
 const db = config.get('mongoURI');

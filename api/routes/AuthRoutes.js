@@ -1,5 +1,4 @@
 const express = require('express');
-const Cookies = require('cookies');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const bcrypt = require('bcryptjs');
@@ -29,8 +28,7 @@ router.post('/login', (req, res) => {
 
       jwt.sign({ id: user.id }, config.get('jwtSecret'), { expiresIn: '7d' }, (err, token) => {
         if (err) throw err;
-        var cookies = new Cookies(req, res, { keys: [config.get('jwtSecret')] })
-        cookies.set('JSESSIONID', token, { signed: true });
+        res.cookies.set('JSESSIONID', token);
         res.status(200).json({
           message: 'Connected',
           user: {
@@ -49,8 +47,7 @@ router.post('/login', (req, res) => {
 // @desv Log out a user, remove cookie
 router.post('/logout', (req, res) => {
 
-  var cookies = new Cookies(req, res, { keys: [config.get('jwtSecret')] })
-  cookies.set('JSESSIONID', { signed: true });
+  res.cookies.set('JSESSIONID');
   res.status(200).send({ message: 'Logout successful.' });
 
 })
