@@ -29,6 +29,7 @@ class App extends Component {
       }
     }).catch(err => {
       console.log('Seesion expired', err.response.data);
+      this.setState({ connectedUser: undefined });
     })
   }
 
